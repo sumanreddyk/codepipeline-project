@@ -12,7 +12,7 @@ phases:
   install:
     commands:
       - npm -v
-      - sudo npm install yarn -g
+      - npm install yarn -g
       - yarm -v
 
   build:
