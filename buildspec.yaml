@@ -22,7 +22,6 @@ phases:
       - npm install -g typescript
       - yarn install
       - cdk bootstrap aws://${AWS_ACCOUNT_ID}/${AWS_DEFAULT_REGION}
-      - cdk diff
       - cdk deploy
 
   build:
