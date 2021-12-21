@@ -24,7 +24,9 @@ phases:
       - cdk bootstrap aws://${AWS_ACCOUNT_ID}/${AWS_DEFAULT_REGION}
       - ls -ltr
       - cd cdk.out
-      - ls -ltr
+      - ls -ltr *.json
+      - cd ../
+      - cdk deploy
 
   build:
     commands:
