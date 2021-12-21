@@ -16,6 +16,10 @@ phases:
       - yarn -v
       - npm install -g aws-cdk
       - cdk --help
+      - export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output=text)
+      - cdk bootstrap aws://${AWS_ACCOUNT_ID}/${AWS_DEFAULT_REGION}
+      - cdk diff
+      - cdk deploy
 
   build:
     commands:
