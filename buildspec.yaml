@@ -1,0 +1,28 @@
+version: 0.2
+
+proxy:
+  logs: yes
+
+env:
+  variables:
+
+
+phases:
+  install:
+    commands:
+      - export TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION}
+      - export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output=text)
+      - usr/local/bin/entrypoint.sh
+      - echo Logging in to Amazon ECR
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+
+  build:
+    commands:
+      - cd flask-docker-app
+      - docker build -t $ECR_REPO_URI:$TAG .
+      - docker push $ECR_REPO_URI:$TAG
+
+  post_build:
+    commands:
+      - kubectl get no
+      - kubectl set image deployment flask-deployment flask=$ECR_REPO_URI:$TAG
