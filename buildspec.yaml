@@ -14,7 +14,8 @@ phases:
       - npm -v
       - npm install yarn -g
       - yarn -v
-      - cdk -v
+      - npm install -g aws-cdk
+      - cdk --help
 
   build:
     commands:
