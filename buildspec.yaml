@@ -17,6 +17,9 @@ phases:
       - npm install -g aws-cdk
       - cdk --help
       - export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output=text)
+      - pwd
+      - ls -ltr
+      - npm install -g typescript
       - cdk bootstrap aws://${AWS_ACCOUNT_ID}/${AWS_DEFAULT_REGION}
       - cdk diff
       - cdk deploy
