@@ -23,7 +23,8 @@ phases:
       - yarn install
       - cdk bootstrap aws://${AWS_ACCOUNT_ID}/${AWS_DEFAULT_REGION}
       - ls -ltr
-      - cdk synth
+      - cd cdk.out
+      - ls -ltr
 
   build:
     commands:
