@@ -5,6 +5,7 @@ proxy:
 
 env:
   variables:
+    AWS_DEFAULT_REGION: ap-southeast-2
 
 
 phases:
